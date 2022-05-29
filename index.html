@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.tailwindcss.com?plugins=line-clamp"></script>
 
         <style type="text/tailwindcss">
             @import url("https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@400;500;600;700;800&display=swap");
@@ -32,21 +33,48 @@
             .btn-primary {
                 @apply bg-teal-600 rounded-md text-white;
             }
+
+            .book {
+                @apply w-full rounded-md relative;
+                aspect-ratio: 3/4;
+                object-fit: cover;
+            }
         </style>
     </head>
     <body>
         <header class="px-16">
-            <h5 class="text-3xl py-6 font-bold">Bookshelf</h5>
+            <h5 class="text-3xl py-6 font-bold text-teal-600">Bookshelf</h5>
         </header>
 
         <div class="flex px-16 w-screen">
             <div class="flex-1">
                 <section id="read">
-                    <div class="h-20 w-full border-8"></div>
+                    <div class="w-full border rounded-md px-5 py-4 shadow">
+                        <h5 class="font-bold">Buku Telah Dibaca</h5>
+                        <hr class="my-5" />
+                        <div>
+                            <div class="w-60">
+                                <img
+                                    class="book"
+                                    src="https://dfb503wu29eo2.cloudfront.net/slir/h1200/png24-front/bookcover0010363.jpg"
+                                    alt=""
+                                />
+                                <h6 class="line-clamp-1 w-full">
+                                    (2021) Diary atauhazxczxczxz xczxcsdhjb
+                                </h6>
+                                <h6 class="line-clamp-1 w-full">
+                                    Ratno Agung Sanjaya
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </div>
             <aside class="w-96">
-                <form action="" class="w-full mx-5 px-4 py-5 rounded-md border">
+                <form
+                    action=""
+                    class="w-full mx-5 px-4 py-5 rounded-md border shadow"
+                >
                     <h5 class="font-bold">Tambah Data</h5>
 
                     <hr class="my-4" />
