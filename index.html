@@ -4,8 +4,96 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://cdn.tailwindcss.com"></script>
+
+        <style type="text/tailwindcss">
+            @import url("https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@400;500;600;700;800&display=swap");
+
+            * {
+                box-sizing: border-box;
+                font-family: "Baloo Tammudu 2", cursive;
+            }
+
+            body {
+                @apply bg-gray-50;
+            }
+
+            .form-group {
+                @apply mb-4;
+            }
+
+            .form-control {
+                @apply p-1 border-2 border-gray-400 rounded-md focus:border-blue-500 w-full;
+            }
+
+            .btn {
+                @apply py-2 px-3;
+            }
+
+            .btn-primary {
+                @apply bg-teal-600 rounded-md text-white;
+            }
+        </style>
     </head>
     <body>
-        <h1 class="font-bold underline">Hello world!</h1>
+        <header class="px-16">
+            <h5 class="text-3xl py-6 font-bold">Bookshelf</h5>
+        </header>
+
+        <div class="flex px-16 w-screen">
+            <div class="flex-1">
+                <section id="read">
+                    <div class="h-20 w-full border-8"></div>
+                </section>
+            </div>
+            <aside class="w-96">
+                <form action="" class="w-full mx-5 px-4 py-5 rounded-md border">
+                    <h5 class="font-bold">Tambah Data</h5>
+
+                    <hr class="my-4" />
+                    <div class="form-group">
+                        <label for="i-judul">Judul</label>
+                        <input id="i-judul" class="form-control" type="text" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="i-penulis">Penulis</label>
+                        <input
+                            id="i-penulis"
+                            class="form-control"
+                            type="text"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="i-tahun">Tahun</label>
+                        <input id="i-tahun" class="form-control" type="text" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="i-cover">Link Cover</label>
+                        <input
+                            id="i-cover"
+                            class="form-control"
+                            type="text"
+                            placeholder="optional"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label
+                            for="i-status"
+                            class="select-none cursor-pointer"
+                        >
+                            Selesai Dibaca
+                            <input type="checkbox" id="i-status" />
+                        </label>
+                    </div>
+
+                    <div class="flex justify-center">
+                        <button class="btn btn-primary">Tambahkan</button>
+                    </div>
+                </form>
+            </aside>
+        </div>
     </body>
 </html>
