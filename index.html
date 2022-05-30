@@ -47,6 +47,11 @@
                 aspect-ratio: 3/4;
                 object-fit: cover;
             }
+
+            .book-item {
+                @apply min-w-[200px] max-w-[200px] snap-center shadow-md hover:shadow-lg px-4 py-4 rounded-md;
+                aspect-ratio: 3/4;
+            }
         </style>
     </head>
     <body>
@@ -140,13 +145,12 @@
                         </label>
                     </div>
 
-                    <div class="flex justify-center">
-                        <button
-                            class="btn btn-primary"
-                            onclick="handleAddBook()"
-                        >
+                    <div class="flex justify-center gap-x-2">
+                        <button type="submit" class="btn btn-primary">
                             Tambahkan
                         </button>
+
+                        <button type="reset" class="btn">Reset</button>
                     </div>
                 </form>
             </aside>
@@ -179,10 +183,7 @@
         </div>
 
         <template id="book-template">
-            <div
-                class="book-item snap-center w-60 group shadow-md hover:shadow-lg px-4 py-4 rounded-md"
-                data-json=""
-            >
+            <div class="book-item group" data-json="">
                 <div class="relative">
                     <img class="book book-img" src="" alt="book img" />
                     <div

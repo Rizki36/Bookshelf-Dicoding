@@ -178,4 +178,9 @@ function handleCloseModal() {
 window.onload = function () {
     const books = getBooks();
     renderBooks(books);
+
+    $formAddBook.addEventListener("submit", (e) => {
+        e.preventDefault();
+        handleAddBook();
+    });
 };
