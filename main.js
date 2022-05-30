@@ -7,11 +7,11 @@ const $inpPenulis = $formAddBook.querySelector("#i-penulis");
 const $inpTahun = $formAddBook.querySelector("#i-tahun");
 const $inpCover = $formAddBook.querySelector("#i-cover");
 const $inpStatus = $formAddBook.querySelector("#i-status");
-
 const $containerRead = qs("#container-read-book");
 const $containerUnRead = qs("#container-unread-book");
-
+const $modalDeleteBook = qs("#modal-delete-book");
 const $templateBook = qs("#book-template");
+const $bookTitleModal = qs("#book-title-modal");
 
 // --------------------------------------------------------
 
@@ -117,8 +117,17 @@ function qs(selector, scope = document) {
 function handleDelete($el) {
     const $bookItem = $el.closest(".book-item");
     const json = $bookItem.getAttribute("data-json");
-    const book = JSON.parse(json);
-    deleteBook(book.id);
+    const bookData = JSON.parse(json);
+
+    $modalDeleteBook.setAttribute("data-json", json);
+    $bookTitleModal.innerHTML = bookData.judul;
+
+    handleModalDeleteBook(true);
+}
+
+function handleModalDeleteBook(show = true) {
+    if (show) $modalDeleteBook.classList.add("!flex");
+    else $modalDeleteBook.classList.remove("!flex");
 }
 
 function handleAddBook() {
@@ -151,6 +160,17 @@ function handleChangeStatus($el) {
     });
     setBooks(newBooks);
     renderBooks(newBooks);
+}
+
+function handleDeleteBook() {
+    const json = $modalDeleteBook.getAttribute("data-json");
+    const book = JSON.parse(json);
+    deleteBook(book.id);
+    handleModalDeleteBook(false);
+}
+
+function handleCloseModal() {
+    handleModalDeleteBook(false);
 }
 
 // --------------------------------------------------------

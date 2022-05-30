@@ -152,6 +152,32 @@
             </aside>
         </div>
 
+        <div
+            id="modal-delete-book"
+            data-json=""
+            class="bg-black fixed inset-0 bg-opacity-50 hidden items-center justify-center"
+        >
+            <div
+                class="bg-white w-96 h-56 rounded-md px-9 py-11 flex items-center flex-col"
+            >
+                <h6 class="text-center">
+                    Apakah anda yakin akan menghapus buku <br />
+                    <b id="book-title-modal">Terbit Sebelum Senja</b> ?
+                </h6>
+                <div class="mt-7 flex-1 flex items-end">
+                    <button class="btn btn-danger" onclick="handleDeleteBook()">
+                        Ya
+                    </button>
+                    <button
+                        class="btn btn-primary ml-2"
+                        onclick="handleCloseModal()"
+                    >
+                        Tidak
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <template id="book-template">
             <div
                 class="book-item snap-center w-60 group shadow-md hover:shadow-lg px-4 py-4 rounded-md"
