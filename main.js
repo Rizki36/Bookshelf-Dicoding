@@ -90,6 +90,10 @@ function renderBooks(books = []) {
     $containerUnRead.innerHTML = unReadBookHtml;
 }
 
+/**
+ * @param object book
+ * @return string
+ */
 function bookToHtml(book) {
     const html = $templateBook.cloneNode(true);
 
@@ -100,6 +104,7 @@ function bookToHtml(book) {
 
     const changeBtnText = !!book.status ? "Belum" : "Sudah";
 
+    // set book data to view
     qs(".book-status", html.content).innerHTML = changeBtnText;
     qs(".book-title", html.content).textContent = book.judul;
     qs(".book-year", html.content).textContent = book.tahun;
@@ -114,6 +119,9 @@ function qs(selector, scope = document) {
     return scope.querySelector(selector);
 }
 
+// --------------------------------------------------------
+
+// ------ event handlers ------
 function handleDelete($el) {
     const $bookItem = $el.closest(".book-item");
     const json = $bookItem.getAttribute("data-json");
