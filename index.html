@@ -34,6 +34,14 @@
                 @apply bg-teal-600 rounded-md text-white;
             }
 
+            .btn-danger {
+                @apply bg-red-600 rounded-md text-white;
+            }
+
+            .btn-sm {
+                @apply py-1 px-2 text-sm;
+            }
+
             .book {
                 @apply w-full rounded-md relative;
                 aspect-ratio: 3/4;
@@ -46,34 +54,55 @@
             <h5 class="text-3xl py-6 font-bold text-teal-600">Bookshelf</h5>
         </header>
 
-        <div class="flex px-16 w-screen">
-            <div class="flex-1">
+        <div class="flex flex-col lg:flex-row px-16 w-full">
+            <div class="flex-auto overflow-hidden">
                 <section id="read">
                     <div class="w-full border rounded-md px-5 py-4 shadow">
                         <h5 class="font-bold">Buku Telah Dibaca</h5>
                         <hr class="my-5" />
-                        <div>
-                            <div class="w-60">
-                                <img
-                                    class="book"
-                                    src="https://dfb503wu29eo2.cloudfront.net/slir/h1200/png24-front/bookcover0010363.jpg"
-                                    alt=""
-                                />
-                                <h6 class="line-clamp-1 w-full">
-                                    (2021) Diary atauhazxczxczxz xczxcsdhjb
-                                </h6>
-                                <h6 class="line-clamp-1 w-full">
-                                    Ratno Agung Sanjaya
-                                </h6>
+                        <div
+                            class="snap-x py-5 flex gap-x-3 w-full overflow-x-auto"
+                        >
+                            <!--  -->
+                            <div
+                                class="snap-center w-60 group shadow-md hover:shadow-lg px-4 py-4 rounded-md"
+                            >
+                                <div class="relative">
+                                    <img
+                                        class="book"
+                                        src="https://dfb503wu29eo2.cloudfront.net/slir/h1200/png24-front/bookcover0010363.jpg"
+                                        alt=""
+                                    />
+                                    <div
+                                        class="group-hover:opacity-100 opacity-0 flex flex-col p-2 gap-y-2 justify-end absolute inset-0"
+                                    >
+                                        <button class="btn btn-primary btn-sm">
+                                            Tandai <br />
+                                            Belum di Baca
+                                        </button>
+                                        <button class="btn btn-danger btn-sm">
+                                            Hapus
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mt-1">
+                                    <h6 class="line-clamp-1 w-full">
+                                        (2021) Diary atauhazxczxczxz xczxcsdhjb
+                                    </h6>
+                                    <h6 class="line-clamp-1 w-full">
+                                        Ratno Agung Sanjaya
+                                    </h6>
+                                </div>
                             </div>
+                            <!--  -->
                         </div>
                     </div>
                 </section>
             </div>
-            <aside class="w-96">
+            <aside class="flex-1 w-full lg:flex-none lg:w-96">
                 <form
                     action=""
-                    class="w-full mx-5 px-4 py-5 rounded-md border shadow"
+                    class="w-full mt-5 lg:mt-0 lg:mx-5 px-4 py-5 rounded-md border shadow"
                 >
                     <h5 class="font-bold">Tambah Data</h5>
 
