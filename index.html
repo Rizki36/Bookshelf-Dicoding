@@ -61,39 +61,11 @@
                         <h5 class="font-bold">Buku Telah Dibaca</h5>
                         <hr class="my-5" />
                         <div
+                            id="container-read-book"
                             class="snap-x py-5 flex gap-x-3 w-full overflow-x-auto"
                         >
                             <!--  -->
-                            <div
-                                class="snap-center w-60 group shadow-md hover:shadow-lg px-4 py-4 rounded-md"
-                            >
-                                <div class="relative">
-                                    <img
-                                        class="book"
-                                        src="https://dfb503wu29eo2.cloudfront.net/slir/h1200/png24-front/bookcover0010363.jpg"
-                                        alt=""
-                                    />
-                                    <div
-                                        class="group-hover:opacity-100 opacity-0 flex flex-col p-2 gap-y-2 justify-end absolute inset-0"
-                                    >
-                                        <button class="btn btn-primary btn-sm">
-                                            Tandai <br />
-                                            Belum di Baca
-                                        </button>
-                                        <button class="btn btn-danger btn-sm">
-                                            Hapus
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="mt-1">
-                                    <h6 class="line-clamp-1 w-full">
-                                        (2021) Diary atauhazxczxczxz xczxcsdhjb
-                                    </h6>
-                                    <h6 class="line-clamp-1 w-full">
-                                        Ratno Agung Sanjaya
-                                    </h6>
-                                </div>
-                            </div>
+
                             <!--  -->
                         </div>
                     </div>
@@ -101,7 +73,7 @@
             </div>
             <aside class="flex-1 w-full lg:flex-none lg:w-96">
                 <form
-                    action=""
+                    id="form-add-book"
                     class="w-full mt-5 lg:mt-0 lg:mx-5 px-4 py-5 rounded-md border shadow"
                 >
                     <h5 class="font-bold">Tambah Data</h5>
@@ -109,13 +81,19 @@
                     <hr class="my-4" />
                     <div class="form-group">
                         <label for="i-judul">Judul</label>
-                        <input id="i-judul" class="form-control" type="text" />
+                        <input
+                            id="i-judul"
+                            name="judul"
+                            class="form-control"
+                            type="text"
+                        />
                     </div>
 
                     <div class="form-group">
                         <label for="i-penulis">Penulis</label>
                         <input
                             id="i-penulis"
+                            name="penulis"
                             class="form-control"
                             type="text"
                         />
@@ -123,13 +101,19 @@
 
                     <div class="form-group">
                         <label for="i-tahun">Tahun</label>
-                        <input id="i-tahun" class="form-control" type="text" />
+                        <input
+                            id="i-tahun"
+                            name="tahun"
+                            class="form-control"
+                            type="text"
+                        />
                     </div>
 
                     <div class="form-group">
                         <label for="i-cover">Link Cover</label>
                         <input
                             id="i-cover"
+                            name="cover"
                             class="form-control"
                             type="text"
                             placeholder="optional"
@@ -142,7 +126,11 @@
                             class="select-none cursor-pointer"
                         >
                             Selesai Dibaca
-                            <input type="checkbox" id="i-status" />
+                            <input
+                                id="i-status"
+                                name="status"
+                                type="checkbox"
+                            />
                         </label>
                     </div>
 
@@ -152,5 +140,34 @@
                 </form>
             </aside>
         </div>
+
+        <template id="book-template">
+            <div
+                class="snap-center w-60 group shadow-md hover:shadow-lg px-4 py-4 rounded-md"
+            >
+                <div class="relative">
+                    <img class="book book-img" src="" alt="book img" />
+                    <div
+                        class="group-hover:opacity-100 opacity-0 flex flex-col p-2 gap-y-2 justify-end absolute inset-0"
+                    >
+                        <button class="btn-book-markas btn btn-primary btn-sm">
+                            Tandai <br />
+                            <span class="book-status"></span> di Baca
+                        </button>
+                        <button class="btn-book-delete btn btn-danger btn-sm">
+                            Hapus
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-1">
+                    <h6 class="line-clamp-1 w-full">
+                        (<span class="book-year"></span>)
+                        <span class="book-title">sds</span>
+                    </h6>
+                    <h6 class="book-writer line-clamp-1 w-full"></h6>
+                </div>
+            </div>
+        </template>
+        <script src="./main.js"></script>
     </body>
 </html>
