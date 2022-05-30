@@ -98,6 +98,9 @@ function bookToHtml(book) {
         JSON.stringify(book)
     );
 
+    const changeBtnText = !!book.status ? "Belum" : "Sudah";
+
+    qs(".book-status", html.content).innerHTML = changeBtnText;
     qs(".book-title", html.content).textContent = book.judul;
     qs(".book-year", html.content).textContent = book.tahun;
     qs(".book-writer", html.content).textContent = book.penulis;
@@ -116,6 +119,38 @@ function handleDelete($el) {
     const json = $bookItem.getAttribute("data-json");
     const book = JSON.parse(json);
     deleteBook(book.id);
+}
+
+function handleAddBook() {
+    const data = getFormData();
+    const books = getBooks();
+    const newBook = {
+        id: +new Date(),
+        judul: data.judul,
+        penulis: data.penulis,
+        tahun: data.tahun,
+        cover: data.cover,
+        status: data.status,
+    };
+
+    books.push(newBook);
+    setBooks(books);
+    renderBooks(books);
+}
+
+function handleChangeStatus($el) {
+    const $bookItem = $el.closest(".book-item");
+    const json = $bookItem.getAttribute("data-json");
+    const bookData = JSON.parse(json);
+    const books = getBooks();
+    const newBooks = books.map((book) => {
+        if (book.id === bookData.id) {
+            book.status = !bookData.status;
+        }
+        return book;
+    });
+    setBooks(newBooks);
+    renderBooks(newBooks);
 }
 
 // --------------------------------------------------------
