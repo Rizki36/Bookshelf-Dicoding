@@ -56,18 +56,24 @@
 
         <div class="flex flex-col lg:flex-row px-16 w-full">
             <div class="flex-auto overflow-hidden">
-                <section id="read">
+                <section id="read" class="mb-4">
                     <div class="w-full border rounded-md px-5 py-4 shadow">
                         <h5 class="font-bold">Buku Telah Dibaca</h5>
                         <hr class="my-5" />
                         <div
                             id="container-read-book"
                             class="snap-x py-5 flex gap-x-3 w-full overflow-x-auto"
-                        >
-                            <!--  -->
-
-                            <!--  -->
-                        </div>
+                        ></div>
+                    </div>
+                </section>
+                <section id="unread">
+                    <div class="w-full border rounded-md px-5 py-4 shadow">
+                        <h5 class="font-bold">Buku Belum Dibaca</h5>
+                        <hr class="my-5" />
+                        <div
+                            id="container-unread-book"
+                            class="snap-x py-5 flex gap-x-3 w-full overflow-x-auto"
+                        ></div>
                     </div>
                 </section>
             </div>
@@ -143,7 +149,8 @@
 
         <template id="book-template">
             <div
-                class="snap-center w-60 group shadow-md hover:shadow-lg px-4 py-4 rounded-md"
+                class="book-item snap-center w-60 group shadow-md hover:shadow-lg px-4 py-4 rounded-md"
+                data-json=""
             >
                 <div class="relative">
                     <img class="book book-img" src="" alt="book img" />
@@ -154,7 +161,10 @@
                             Tandai <br />
                             <span class="book-status"></span> di Baca
                         </button>
-                        <button class="btn-book-delete btn btn-danger btn-sm">
+                        <button
+                            onclick="handleDelete(this)"
+                            class="btn-book-delete btn btn-danger btn-sm"
+                        >
                             Hapus
                         </button>
                     </div>

@@ -1,6 +1,6 @@
 const KEY_STORAGE = "books";
 
-// ----------- cache element selector
+// ------ cache element selector ------
 const $formAddBook = qs("#form-add-book");
 const $inpJudul = $formAddBook.querySelector("#i-judul");
 const $inpPenulis = $formAddBook.querySelector("#i-penulis");
@@ -9,10 +9,43 @@ const $inpCover = $formAddBook.querySelector("#i-cover");
 const $inpStatus = $formAddBook.querySelector("#i-status");
 
 const $containerRead = qs("#container-read-book");
+const $containerUnRead = qs("#container-unread-book");
 
 const $templateBook = qs("#book-template");
 
 // --------------------------------------------------------
+
+// ------ Storage Functions ------
+
+/**
+ * get all books
+ * @return array
+ */
+function getBooks() {
+    // get from localstorage
+    return JSON.parse(localStorage.getItem(KEY_STORAGE)) || [];
+}
+
+/**
+ * @param number id
+ */
+function deleteBook(id) {
+    const books = getBooks();
+    const filteredBooks = books.filter((book) => book.id !== id);
+    setBooks(filteredBooks);
+    renderBooks(filteredBooks);
+}
+
+/**
+ * @param array books
+ */
+function setBooks(books = []) {
+    localStorage.setItem(KEY_STORAGE, JSON.stringify(books));
+}
+
+// --------------------------------------------------------
+
+// ----------- Utils -----------
 
 /** @return object { judul, penulis, tahun, cover, status } */
 function getFormData() {
@@ -49,48 +82,45 @@ function renderBooks(books = []) {
         readBookHtml += bookToHtml(book);
     });
     $containerRead.innerHTML = readBookHtml;
-}
 
-/**
- * get all books
- * @return array
- */
-function getBooks() {
-    // get from localstorage
-    return JSON.parse(localStorage.getItem(KEY_STORAGE)) || [];
-}
-
-function deleteBook(id) {
-    const books = getBooks();
-    books.splice(id, 1);
-    localStorage.setItem(KEY_STORAGE, JSON.stringify(books));
-    renderBooks(books);
+    // render unread books
+    unReadBooks.forEach((book) => {
+        unReadBookHtml += bookToHtml(book);
+    });
+    $containerUnRead.innerHTML = unReadBookHtml;
 }
 
 function bookToHtml(book) {
     const html = $templateBook.cloneNode(true);
 
-    html.content.querySelector(".book-title").textContent = book.judul;
-    html.content.querySelector(".book-year").textContent = book.tahun;
-    html.content.querySelector(".book-writer").textContent = book.penulis;
-    html.content.querySelector(".book-img").src = book.cover;
+    qs(".book-item", html.content).setAttribute(
+        "data-json",
+        JSON.stringify(book)
+    );
+
+    qs(".book-title", html.content).textContent = book.judul;
+    qs(".book-year", html.content).textContent = book.tahun;
+    qs(".book-writer", html.content).textContent = book.penulis;
+    qs(".book-img", html.content).src = book.cover;
 
     return html.innerHTML;
 }
 
 /** query selector */
-function qs(selector) {
-    return document.querySelector(selector);
+function qs(selector, scope = document) {
+    return scope.querySelector(selector);
 }
 
+function handleDelete($el) {
+    const $bookItem = $el.closest(".book-item");
+    const json = $bookItem.getAttribute("data-json");
+    const book = JSON.parse(json);
+    deleteBook(book.id);
+}
+
+// --------------------------------------------------------
+
 window.onload = function () {
-    renderBooks([
-        {
-            judul: "Harry Potter",
-            penulis: "J.K. Rowling",
-            tahun: "2005",
-            cover: "img/harry-potter.jpg",
-            status: true,
-        },
-    ]);
+    const books = getBooks();
+    renderBooks(books);
 };
